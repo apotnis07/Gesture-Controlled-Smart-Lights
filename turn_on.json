@@ -1,0 +1,8 @@
+{
+  "device": "{device}",
+  "model": "{model}",
+  "cmd": {
+    "name": "turn",
+    "value": "on"
+  }
+}
