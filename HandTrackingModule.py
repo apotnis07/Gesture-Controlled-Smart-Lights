@@ -6,6 +6,7 @@ import math
 from charset_normalizer import detect
 
 
+
 class handDetector():
     def __init__(self, mode=False, maxHands=2, detectionConfidence=0.5, trackConfidence=0.5):
         self.mode = mode
@@ -19,6 +20,8 @@ class handDetector():
         self.tipIds = [4, 8, 12, 16, 20]
         self.fingers = []
         self.lmList = []
+        self.prev_palm_x = None
+
 
     def findHands(self, img, draw=True, flipType=True):
         """
@@ -44,6 +47,7 @@ class handDetector():
                     xList.append(px)
                     yList.append(py)
 
+
                 ## bbox
                 xmin, xmax = min(xList), max(xList)
                 ymin, ymax = min(yList), max(yList)
@@ -55,6 +59,7 @@ class handDetector():
                 myHand["lmList"] = mylmList
                 myHand["bbox"] = bbox
                 myHand["center"] = (cx, cy)
+                myHand["palm_center"] = mylmList[0]
 
                 if flipType:
                     if handType.classification[0].label == "Right":
