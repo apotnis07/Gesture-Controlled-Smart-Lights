@@ -25,7 +25,8 @@ while True:
 
     if hands:
         hand1 = hands[0]
-        palm_x = hand1["palm_center"][1]
+        palm_x = hand1["palm_center"][0]
+
         fingers1 = detector.fingersUp(hand1)
         num_fingers = sum(fingers1)
         new_brightness = num_fingers * 20  # Map fingers (1-5) to brightness (20-100)
