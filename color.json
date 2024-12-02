@@ -1,0 +1,12 @@
+{
+  "device": "{device}",
+  "model": "{model}",
+  "cmd": {
+    "name": "color",
+    "value": {
+        "r": "{red}",
+        "g": "{green}",
+        "b": "{blue}"
+    }
+  }
+}

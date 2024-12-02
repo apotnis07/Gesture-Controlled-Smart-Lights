@@ -55,6 +55,26 @@ class API_Calls():
         else:
             print(f"Request failed with status code {response.status_code}")
 
+    def set_color(self, r=255, g=0, b=0):
+        with open('color.json') as json_file:
+            color_body = json.load(json_file)
+        color_body['device'] = self.device
+        color_body['model'] = self.model
+        color_body['cmd']['value']['r'] = r
+        color_body['cmd']['value']['g'] = g
+        color_body['cmd']['value']['b'] = b
+
+        url = "https://developer-api.govee.com/v1/devices/control"
+        response = requests.put(url, headers=self.headers, json=color_body)
+
+        if response.status_code == 200:
+            data = response.json()
+            formatted_data = json.dumps(data, indent=2)
+            print(formatted_data)
+        else:
+            print(f"Request failed with status code {response.status_code}")
+
+
     def set_brightness(self, brightness = 100):
         with open('brightness.json') as json_file:
             brightness_body = json.load(json_file)
